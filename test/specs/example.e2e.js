@@ -31,13 +31,11 @@ describe('My Search test', () => {
 
     //This testcase make reference to AT-4 from Test Set
     it('The North America link should be functional', async () => {
-            await northAmericaLink.waitForDisplayed({ timeout: 5000 })
+            await SearchPage.northamerica.waitForDisplayed({ timeout: 5000 })
           const hrefAttribute = await SearchPage.northamerica.getAttribute('href');
-            await expect(SearchPage.hrefAttribute).toHaveUrlContaining('#north-america');
+            await expect(hrefAttribute).toHaveUrlContaining('#north-america');
 
     })
-
-
 
     //This testcase make reference to AT-5 from Test Set
     it('The Central America link should be functional', async () => {
