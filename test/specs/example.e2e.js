@@ -1,4 +1,4 @@
-
+const { Console } = require('console');
 const SearchPage = require('../pageobjects/login.page')
 const assert = require('assert');
 
@@ -9,11 +9,14 @@ describe('My Search test', () => {
     it('should serch the website', async () => {
         await SearchPage.open()
         await SearchPage.search('Focus Services')
+        browser.keys('\uE007');
+        await SearchPage.url.click();
+
 
     })
     //This testcase make reference to AT-2 from Test Set
     it('should fin the botton in the footer', async () => {
-
+        await SearchPage.footer.scrollIntoView();
         await expect(SearchPage.nowhiring).toBeExisting()
         await expect(SearchPage.nowhiring).toHaveTextContaining(
             'Now Hiring!')
@@ -28,7 +31,10 @@ describe('My Search test', () => {
 
     //This testcase make reference to AT-4 from Test Set
     it('The North America link should be functional', async () => {
-            assert.strictEqual(northamericahref, "#north-america");
+            await northAmericaLink.waitForDisplayed({ timeout: 5000 })
+          const hrefAttribute = await SearchPage.northamerica.getAttribute('href');
+            await expect(SearchPage.hrefAttribute).toHaveUrlContaining('#north-america');
+
     })
 
 
@@ -56,5 +62,7 @@ describe('My Search test', () => {
                 'Bacolod City, Philippines')
             browser.pause(80000);
     })
+
+
 
 })
