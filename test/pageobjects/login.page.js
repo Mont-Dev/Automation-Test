@@ -1,7 +1,6 @@
-
-
 const Page = require('./page');
 
+//This class contain all the selectors for the test
 
 class SearchPage extends Page {
 
@@ -25,12 +24,10 @@ class SearchPage extends Page {
     }
 
     get northamerica(){
-        return $('[href="#north-america"]');
+        return $('a[href="#north-america"]');
     }
 
-    get northamericahref(){
-        return this.northamerica.getAttribute('href')
-    }
+
     
     get centralamerica(){
         return $('[href="#central-america"]');
@@ -50,9 +47,7 @@ class SearchPage extends Page {
     
     async search (searchvalue) {
         await this.inputsearch.setValue(searchvalue);
-        browser.keys('\uE007');
-        await this.url.click();
-        await this.footer.scrollIntoView();
+
   
     }
 
@@ -62,5 +57,3 @@ class SearchPage extends Page {
 }
 
 module.exports = new SearchPage();
-
-
